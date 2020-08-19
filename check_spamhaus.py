@@ -1,7 +1,8 @@
 import requests
 
 
-def method1(domain):
+
+def check_spamhaus_method1(domain):
     r_auth = requests.get('https://mxtoolbox.com/api/v1/user')
     TempAuthKey = r_auth.json()['TempAuthKey']
     payload = { 
@@ -26,7 +27,7 @@ def method1(domain):
     else:
         return True
 
-def method2(domain):
+def check_spamhaus_method2(domain):
     url = "http://multirbl.valli.org/lookup/"+str(domain)+".html"
     text = requests.get(url).text
     ash = re.findall('"asessionHash": "([^"]+)"', text)[0]
@@ -43,11 +44,11 @@ def check_spamhaus(domain):
            None otherwise
     """
     try:
-        return method1(domain)
+        return check_spamhaus_method1(domain)
     except:
         pass
     try:
-        return method2(domain)
+        return check_spamhaus_method2(domain)
     except:
         pass
     return None
