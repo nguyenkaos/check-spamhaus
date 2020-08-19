@@ -1,5 +1,5 @@
 import requests
-
+import re
 
 
 def check_spamhaus_method1(domain):
