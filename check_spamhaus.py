@@ -26,5 +26,31 @@ def method1(domain):
     else:
         return True
 
+def method2(domain):
+    url = "http://multirbl.valli.org/lookup/"+str(domain)+".html"
+    text = requests.get(url).text
+    ash = re.findall('"asessionHash": "([^"]+)"', text)[0]
+    r2 = requests.get("http://multirbl.valli.org/json-lookup.php?ash="+ash+"&rid=DNSBLBlacklistTest_42&lid=640&q="+domain)
+    if '"result":false' in r2.text:
+        return False
+    else:
+        return True
+
+def check_spamhaus(domain):
+    """ 
+    Return True if domain is good
+           False if domain is bad
+           None otherwise
+    """
+    try:
+        return method1(domain)
+    except:
+        pass
+    try:
+        return method2(domain)
+    except:
+        pass
+    return None
+
 
 
