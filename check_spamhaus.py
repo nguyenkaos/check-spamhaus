@@ -53,7 +53,9 @@ def check_spamhaus(domain):
     """
     print('Check Spamhaus for: %s' % domain)
     try:
-        return check_spamhaus_method1(domain)
+        c1 = check_spamhaus_method1(domain)
+        if c1 != None:
+               return c1
     except Exception as e:
         print('ERR check_spamhaus_method1: %s' % e)
     try:
