@@ -2,6 +2,7 @@ import requests
 import re
 
 
+
 def check_spamhaus_method1(domain): 
     token_list = [
         '1d30737e-971f-45a8-af52-40d022c80240',
@@ -10,6 +11,10 @@ def check_spamhaus_method1(domain):
         '1379f99e-5556-4ad6-9055-4db63c70463e',
         '49ae5869-59e8-480d-ace5-f92b4a4b8f9a',
         'e49e6bde-76dd-4b8c-9890-d57fa477a41d',
+        '73d31052-7997-4a7f-ab9a-308a6769f297',
+        'd4994ace-bbfe-404c-89b2-e2e0c6b41176',
+        '4874bcf6-0fcf-4963-a2c5-69c11bddc00b',
+        '9f7b4a05-df48-47ba-b10c-f62992ef56ef',
     ]
     import random
     random.shuffle(token_list)
