@@ -34,11 +34,12 @@ def check_spamhaus_method1(domain):
     return None
 
 
+
 def check_spamhaus_method2(domain):
     url = "http://multirbl.valli.org/lookup/"+str(domain)+".html"
-    text = requests.get(url).text
+    text = requests.get(url, verify=False).text
     ash = re.findall('"asessionHash": "([^"]+)"', text)[0]
-    r2 = requests.get("http://multirbl.valli.org/json-lookup.php?ash="+ash+"&rid=DNSBLBlacklistTest_42&lid=640&q="+domain)
+    r2 = requests.get("http://multirbl.valli.org/json-lookup.php?ash="+ash+"&rid=DNSBLBlacklistTest_42&lid=640&q="+domain, verify=False)
     if '"result":false' in r2.text:
         return False
     else:
